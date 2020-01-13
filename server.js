@@ -1,17 +1,17 @@
 const express = require("express");
+const connectDB = require("./config/db");
 
 const app = express();
 
+//Connect Cloud DB
+connectDB();
+
+//Init middleware
+app.use(express.json({ extended: false }));
+
 app.get("/", (req, res) => {
   res.json({
-    names: [
-      {
-        userId: 1,
-        id: 1,
-        title: "delectus aut autem",
-        completed: false
-      }
-    ]
+    msg: "API server dead end"
   });
 });
 
