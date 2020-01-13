@@ -1,6 +1,6 @@
 const express = require("express");
-const router = express.Router();
 const { check, validationResult } = require("express-validator");
+const router = express.Router();
 const Todo = require("../models/Todo");
 
 // @route GET api/todos
@@ -23,7 +23,6 @@ router.get("/", async (req, res) => {
 // @access Public
 router.post(
   "/",
-
   [
     check("title", "Title is required")
       .not()
