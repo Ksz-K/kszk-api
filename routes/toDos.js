@@ -26,6 +26,9 @@ router.post(
   [
     check("title", "Title is required")
       .not()
+      .isEmpty(),
+    check("id", "ID is required")
+      .not()
       .isEmpty()
   ],
   async (req, res) => {
@@ -33,12 +36,13 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ "What went wrong": errors.array() });
     }
-    const { title, done } = req.body;
+    const { title, done, id } = req.body;
 
     try {
       const newTodo = new Todo({
         title,
-        done
+        done,
+        id
       });
 
       const todo = await newTodo.save();
