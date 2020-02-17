@@ -21,6 +21,7 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/contacts", require("./routes/contacts"));
 app.use("/api/todos", require("./routes/toDos"));
 app.use("/api/users", require("./routes/users"));
+app.use("/api/products", require("./routes/products"));
 
 if (process.env.NODE_ENV === "production") {
   //Set static folder
