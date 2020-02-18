@@ -16,6 +16,26 @@ router.get("/", async (req, res) => {
   }
 });
 
+// @route GET api/posts/:id
+// @desc GET Get post by ID
+// @access Private NOT YET
+
+router.get("/:id", async (req, res) => {
+  try {
+    const order = await ProductsOrder.findById(req.params.id);
+    if (!order) {
+      return res.status(404).json({ msg: "Post does not exist" });
+    }
+    res.json(order);
+  } catch (err) {
+    if (err.kind === "ObjectId") {
+      return res.status(404).json({ msg: "Post does not exist" });
+    }
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
 // @route POST api/products
 // @desc Add new ORDER
 // @access Public //@todo - private//
