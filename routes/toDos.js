@@ -26,9 +26,6 @@ router.post(
   [
     check("title", "Title is required")
       .not()
-      .isEmpty(),
-    check("id", "ID is required")
-      .not()
       .isEmpty()
   ],
   async (req, res) => {
@@ -36,15 +33,13 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ "What went wrong": errors.array() });
     }
-    const { title, done, id } = req.body;
+    const { title, done } = req.body;
 
     try {
       const newTodo = new Todo({
         title,
-        done,
-        id
+        done
       });
-
       const todo = await newTodo.save();
       res.json(todo);
     } catch (err) {
@@ -63,7 +58,7 @@ router.put("/:id", async (req, res) => {
   const contactFields = {};
 
   if (title) contactFields.title = title;
-  if (done) contactFields.done = done;
+  if (done === true || done === false) contactFields.done = done;
 
   try {
     let todo = await Todo.findById(req.params.id);
@@ -75,7 +70,6 @@ router.put("/:id", async (req, res) => {
       { $set: contactFields },
       { new: true }
     );
-
     res.json(todo);
   } catch (err) {
     console.error(err.message);
