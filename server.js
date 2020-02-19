@@ -27,12 +27,13 @@ app.use("/api/contacts", require("./routes/contacts"));
 app.use("/api/todos", require("./routes/toDos"));
 app.use("/api/users", require("./routes/users"));
 app.use("/api/products", require("./routes/products"));
+app.use("/api/estore", require("./routes/estore"));
 
-// app.use(
-//   mongoSanitize({
-//     replaceWith: "_"
-//   })
-// );
+app.use(
+  mongoSanitize({
+    replaceWith: "_"
+  })
+);
 if (process.env.NODE_ENV === "production") {
   //Set static folder
   //app.use(express.static("client/build"));

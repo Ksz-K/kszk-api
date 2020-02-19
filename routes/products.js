@@ -16,8 +16,8 @@ router.get("/", async (req, res) => {
   }
 });
 
-// @route GET api/posts/:id
-// @desc GET Get post by ID
+// @route GET api/products/:id
+// @desc GET Get order by ID
 // @access Private NOT YET
 
 router.get("/:id", async (req, res) => {
