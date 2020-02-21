@@ -18,8 +18,35 @@ router.get("/", async (req, res) => {
   }
 });
 
-// @route GET api/posts/:id
-// @desc GET Get post by ID
+// @route GET api/estore
+// @desc Get products by range
+// @access Public
+router.get("/:startAt/:limit", async (req, res) => {
+  try {
+    let { startAt, limit } = req.params;
+
+    startAt = parseInt(startAt);
+    limit = parseInt(limit);
+
+    const productsOnShelf = await eShelf
+      .find()
+      .sort({ _id: -1 })
+      .skip(startAt)
+      .limit(limit);
+    const amount = await eShelf.countDocuments();
+
+    res.status(200).json({
+      productsOnShelf,
+      amount
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
+// @route GET api/estore/:id
+// @desc GET Get SKU by ID
 // @access Private NOT YET
 
 router.get("/:id", async (req, res) => {
