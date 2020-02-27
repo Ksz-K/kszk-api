@@ -9,7 +9,7 @@ const Countries = require("../models/Countries");
 router.get("/", async (req, res) => {
   try {
     const countries = await Countries.find().sort({
-      date: -1
+      name: 1
     });
     res.json(countries);
   } catch (err) {
