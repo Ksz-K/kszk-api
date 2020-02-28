@@ -1,3 +1,4 @@
+require("dotenv").config({ path: ".env" });
 const express = require("express");
 const connectDB = require("./config/db");
 const helmet = require("helmet");
