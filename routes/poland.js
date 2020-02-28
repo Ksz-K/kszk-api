@@ -18,6 +18,40 @@ router.get("/", async (req, res) => {
   }
 });
 
+// @route GET api/area/searchCriterion
+// @desc Get area details
+// @access Public
+
+router.get("/:area/:areaname", async (req, res) => {
+  try {
+    const { area, areaname } = req.params;
+    let subarea;
+    switch (area) {
+      case "voivodeship":
+        subarea = "county";
+        break;
+      case "county":
+        subarea = "community";
+        break;
+      case "community":
+        subarea = "place";
+        break;
+      default:
+        break;
+    }
+
+    const Details = await Poland.distinct(subarea, {
+      [area]: areaname
+    });
+    res.status(200).json({
+      Details
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
+});
+
 // @route POST api/countries
 // @desc Add new country
 // @access Public //@todo - private//
