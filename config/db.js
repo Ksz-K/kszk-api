@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const mongoDB =
-  "mongodb+srv://kszkapi123:kszkapi123@kszkapi-hvyap.mongodb.net/test?retryWrites=true&w=majority";
+const mongoDB = process.env.ATLAS;
 
 const connectDB = async () => {
   try {
