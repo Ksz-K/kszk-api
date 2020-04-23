@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const mongoDB =
-  "mongodb+srv://kszkapi123:kszkapi123@kszkapi-hvyap.mongodb.net/test?retryWrites=true&w=majority";
+const mongoDB = process.env.ATLAS;
 
 const connectDB = async () => {
   try {
@@ -8,7 +7,7 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useCreateIndex: true,
       useFindAndModify: false,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
     });
 
     console.log("Cloud MongoDB connected...");
