@@ -31,6 +31,7 @@ app.use("/api/products", require("./routes/products"));
 app.use("/api/estore", require("./routes/estore"));
 app.use("/api/countries", require("./routes/countries"));
 app.use("/api/poland", require("./routes/poland"));
+app.use("/api/snake", require("./routes/snake"));
 
 app.use(
   mongoSanitize({
